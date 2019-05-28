@@ -1,0 +1,13 @@
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\bin\Debug\Repo.exe.config
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\bin\Debug\Repo.exe
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\bin\Debug\Repo.pdb
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\obj\Debug\Repo.Properties.Resources.resources
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\obj\Debug\Repo.csproj.GenerateResource.Cache
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\obj\Debug\Repo.exe
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\obj\Debug\Repo.pdb
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\obj\Debug\Repo.csprojResolveAssemblyReference.cache
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\bin\Debug\Google.Protobuf.dll
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\bin\Debug\MySql.Data.dll
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\bin\Debug\Google.Protobuf.xml
+C:\Users\ciemm\documents\visual studio 2015\Projects\forAngular\Repo\bin\Debug\MySql.Data.xml

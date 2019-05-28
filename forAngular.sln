@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "forAngular", "forAngular\forAngular.csproj", "{6855708C-A8D9-4C6F-A33E-4B462F6A2B88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{B64F6636-241D-4D18-87DB-74B6856CFF24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repo", "Repo\Repo.csproj", "{CADA7242-EDBE-49B9-90B6-D773ED53CAB0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6855708C-A8D9-4C6F-A33E-4B462F6A2B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6855708C-A8D9-4C6F-A33E-4B462F6A2B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6855708C-A8D9-4C6F-A33E-4B462F6A2B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6855708C-A8D9-4C6F-A33E-4B462F6A2B88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B64F6636-241D-4D18-87DB-74B6856CFF24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B64F6636-241D-4D18-87DB-74B6856CFF24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B64F6636-241D-4D18-87DB-74B6856CFF24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B64F6636-241D-4D18-87DB-74B6856CFF24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CADA7242-EDBE-49B9-90B6-D773ED53CAB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CADA7242-EDBE-49B9-90B6-D773ED53CAB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CADA7242-EDBE-49B9-90B6-D773ED53CAB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CADA7242-EDBE-49B9-90B6-D773ED53CAB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
