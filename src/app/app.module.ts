@@ -17,6 +17,7 @@ import { PoDirective } from './po.directive';
 import { SgatelottiComponent } from './sgatelotti/sgatelotti.component';
 import { SgatereqsComponent } from './sgatereqs/sgatereqs.component';
 import { TestDirective } from './test.directive';
+import { StateIndComponent } from './state-ind/state-ind.component';
 
 const routes:Routes=[
   
@@ -43,6 +44,7 @@ const routes:Routes=[
     SgatelottiComponent,
     SgatereqsComponent,
     TestDirective,
+    StateIndComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,6 @@ const routes:Routes=[
   ],
   providers: [SgateService,NgbActiveModal],
   bootstrap: [AppComponent],
-  entryComponents:[LottoModalComponent,SgatereqsComponent],
+  entryComponents:[LottoModalComponent,SgatereqsComponent,StateIndComponent],
 })
 export class AppModule { }

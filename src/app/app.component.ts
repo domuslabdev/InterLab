@@ -11,15 +11,15 @@ import { SgatelottiComponent } from './sgatelotti/sgatelotti.component';
 })
 
 export class AppComponent implements OnInit {
-  bilotti="bilottino";
+  bilotti="bilottisi";
   visible:boolean=true;
-
+  
   @ViewChild(SgatelottiComponent) bilottichild;
 
   constructor(private service:SgateService){
    this.service.bilottiDisplay.subscribe((t)=>{this.bilotti=t});
   }
-
+  
   ngOnInit(){
    this.service.bilottiDisplay.subscribe((t)=>{this.visible=true});
    this.service.emitReg.subscribe((t)=>{
@@ -27,5 +27,5 @@ export class AppComponent implements OnInit {
     });
      this.bilottichild.getLotti();
    }
- 
+   
 }

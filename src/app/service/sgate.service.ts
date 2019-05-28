@@ -34,7 +34,6 @@ export class SgateService {
   modaltestopen = new EventEmitter<string>();
   //currentmessage=this.messageSource.asObservable();
   emilotti = new EventEmitter<any>();
-  emitInsLotti = new Subject<string>();
   emitInsCapLotti = new EventEmitter<string>();
   emitReg = new EventEmitter<string>();
   modalpromise: Promise<any>;
@@ -43,9 +42,8 @@ export class SgateService {
   resultmodalpromise: string;
   reqs: Array<SgateRequest>;
   ana$ = new EventEmitter<string>();
-//  lottoname$=new Subject<string>();
-  lottoname$=new Observable((observer)=>{
-  });
+  //  lottoname$=new Subject<string>();
+  lottoname$ = new Subject();
 
   ngOnChanges(changes: SimpleChanges): void {
   }
@@ -59,14 +57,6 @@ export class SgateService {
   setBilotti(text: string) {
     this.bilottiDisplay.emit(text);
   }
-
-  // insertCapLotto(lot: string): Observable<string> {
-  // }
-
-  // testObserver(observer) {
-  //   this.getUser().subscribe((x) => { this.users = x });
-  //   observer.next("ciao a todo mundos");
-  // }
 
   getLotti(text: string): Observable<Array<Lotti>> {
     return this.httpclient.post<Array<Lotti>>(URLlotti + "/getLotti", { "text": text }, httpOptions);
@@ -106,10 +96,6 @@ export class SgateService {
     this.messageSource.next(lotid);
   }
 
-  lottomodal() {
-    this.emitInsLotti.next("ciao");
-  }
-
   modaltestemitter() {
     this.modaltestopen.emit("ciao");
   }
@@ -136,7 +122,7 @@ export class SgateService {
         reject("errore di comunicazione");
     }));
   }
-
+  
   callAnaCOmponent() {
     // return (new Subject((observer)=>{
     //     observer.next("ciao");
@@ -159,23 +145,24 @@ export class SgateService {
     modalRef.componentInstance.btnCancelText = btnCancelText;
 
     modalRef.result
-    .then((x) => {
-      if (x!=null && x!=false)
-        this.getLottoName(x);
-      else if (!x)
-        location.href = "http://www.google.com";
-    })
-    .catch((x) => {
-      location.href = "http://www.google.com";
-    });
-}
+      .then((x) => {
+        if (x != null && x != false)
+          this.getLottoName(x);
+        else if (!x)
+          var t = 100;
+        //location.href = "http://www.google.com";
+      })
+      .catch((x) => {
+        //location.href = "http://www.google.com";
+      });
+  }
 
-get lottonameget(){
-  return this.lottoname$;
-}
+  get lottonameget() {
+    return this.lottoname$;
+  }
 
-getLottoName(lottoname:string):void{
- // this.lottoname$.next(lottoname);
-}
+  getLottoName(lottoname: string): void {
+    this.lottoname$.next(lottoname);
+  }
 
 }

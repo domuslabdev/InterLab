@@ -6,7 +6,7 @@ import { RichiesteComponent } from '../richieste/richieste.component';
 import { promise } from 'protractor';
 import { PanelComponent } from '../panel/panel.component';
 import { NgModel } from '@angular/forms';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { LottoModalComponent } from '../lotto-modal/lotto-modal.component';
 import { Moment } from 'moment';
@@ -16,6 +16,7 @@ import { directiveDef } from '@angular/core/src/view';
 import { injectViewContainerRef } from '@angular/core/src/render3/view_engine_compatibility';
 import { SgatereqsComponent } from '../sgatereqs/sgatereqs.component';
 import { forEach } from '@angular/router/src/utils/collection';
+import { StateIndComponent } from '../state-ind/state-ind.component';
 let moment = require('moment');
 
 @Component({
@@ -30,9 +31,10 @@ export class SgatelottiComponent implements OnInit {
   @ViewChild(RichiesteComponent) mode;
   @ContentChild(LottoModalComponent) lottomodal;
   @ViewChild("content") el: ElementRef;
-  @ViewChild("caricalottiref")  caricalottiref: ElementRef;
+  @ViewChild("caricalottiref") caricalottiref: ElementRef;
   @ViewChild(PoDirective) podir;
   @ContentChildren("row") trdata;
+  @ViewChild(StateIndComponent) state: StateIndComponent;
   closeResult: string;
   modal;
   numberOfClicks = 0;
@@ -58,35 +60,26 @@ export class SgatelottiComponent implements OnInit {
   onClick(btn) {
     console.log('button', btn, 'number of clicks:', this.numberOfClicks++);
   }
-  //
 
   @HostListener('document:keyup', ['$event'])
   Keyevent(ev: KeyboardEvent) {
     var t = 100;
   }
 
-  constructor(private service: SgateService, private modalService: NgbModal, private _elementRef: ElementRef) {
+  constructor(private service: SgateService, private modalService: NgbModal, private activemodal: NgbActiveModal, private _elementRef: ElementRef) {
     // this.lottomodal.esterback.subscribe((x)=>{console.log(x.Desc)});
   }
 
   ngOnInit() {
     console.log("valore preso dalla podir: " + this.podir.x);
-    var element=this._elementRef.nativeElement.querySelector('#caricalotti');
-    element.style.color="red";
-//    element.title="caricalotti";
-    this.caricalottiref.nativeElement.title="caricalotti";
-    this.service.lottoname$.subscribe((x)=>{
-      console.log("lottoname arrivato"+x);
-    });
+    var element = this._elementRef.nativeElement.querySelector('#caricalotti');
+    element.style.color = "red";
+    //    element.title="caricalotti";
+    this.caricalottiref.nativeElement.title = "caricalotti";
   }
 
-  ngAfterContentChecked(): void {
-  }
-
-  ngAfterContentInit(): void {
-    this.service.lottoname$.subscribe((x)=>{
-      console.log("lottoname arrivato"+x);
-    });
+  ngAfterContentInit() {
+    this.service.lottoname$.subscribe((x) => { this.insertCapLotto(x) });
   }
 
   //registro
@@ -97,33 +90,38 @@ export class SgatelottiComponent implements OnInit {
     this.mode.getModal(lotid);
   }
 
-  insertLotto() {
-    this.service.emitInsLotti.next();
-  }
-
   insertCapLotto(lotto) {
-    //  this.service.emitInsCapLotti.emit(lotto.value);
-    // this.service.insertCapLotto(lotto).subscribe((x) => { this.getLotti() });
+    this.service.insertLotto(lotto).subscribe((x) => { window.confirm(x) });
   }
 
   openCapInsertLottoModal() {
     this.modal = this.modalService.open(this.el);
   }
 
-  getLotti() {
-    //  this.service.getLotti("OK").subscribe((x) => {
-    this.service.getLotti("OK").toPromise().then(
-      (x) => {
-        this.lotti = x;
-        this.lotti.map(x => x.DataAcquisizione = moment(x.DataAcquisizione).format('MM/DD/YYYY'));
-        this.lotti.map(x => x.DataInvioEsiti = moment(x.DataInvioEsiti).format('MM/DD/YYYY'));
-        this.lotti.map(x => x.DataCarico = moment(x.DataCarico).format('MM/DD/YYYY'));
-        this.lotti.map(x => x.Desc = this.stato.acquisito);
-      })
-      .catch((x) => { console.log("httpclient non va") });
-
+  public getLotti() {
+    this.openstatemodalpromise().then((k) => {
+      k.close();
+    });
+    
     var lottirev = this.lotti.map(x => new Date(x.DataAcquisizione));
     return this.lotti;
+  }
+
+  openstatemodalpromise(): Promise<NgbModalRef> {
+    return new Promise((resolve) => {
+      var res = this.modalService.open(StateIndComponent);
+      setTimeout(()=>{
+      this.service.getLotti("OK").toPromise().then(
+        (x) => {
+          this.lotti = x;
+          this.lotti.map(x => x.DataAcquisizione = moment(x.DataAcquisizione).format('MM/DD/YYYY'));
+          this.lotti.map(x => x.DataInvioEsiti = moment(x.DataInvioEsiti).format('MM/DD/YYYY'));
+          this.lotti.map(x => x.DataCarico = moment(x.DataCarico).format('MM/DD/YYYY'));
+          this.lotti.map(x => x.Desc = this.stato.acquisito);
+      resolve(res);
+    });
+    },3000);
+    });
   }
 
   getSgateReqs(event) {
@@ -143,7 +141,7 @@ export class SgatelottiComponent implements OnInit {
   openSgateReqs(data) {
     this.service.openSgateReqsModal("Salva", "Abbandona", "Lista delle richieste del lotto", data)
     this.service.reqspromise()
-    .then((x) => {
+      .then((x) => {
         this.validateReqs(x);
       })
       .catch((x) => { console.log("non arriva niente da sgatereqsmodal") });
