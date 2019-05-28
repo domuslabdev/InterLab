@@ -1,0 +1,25 @@
+
+
+<div class="jumbotron">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="pnl1 col-md-2">
+				<app-panel></app-panel>
+			</div>
+			<div class="col-md-10">
+				<div class="col-md-12" [ngClass]="bilotti" >
+					<app-sgatelotti [style.display]="visible?'block':'none'" >
+					</app-sgatelotti>
+				</div>
+
+				<div class="col-md-12"  >
+					<app-registro  [style.display]="!visible?'block':'none'"></app-registro>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+

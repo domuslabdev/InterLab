@@ -1,0 +1,22 @@
+
+<ngb-accordion [closeOthers]="true" activeIds="static-1" id="panel">
+  
+  <ngb-panel id="static-1" >
+      <ng-template ngbPanelTitle>
+          <span><b> Flussi</b></span>
+        </ng-template>
+    <ng-template ngbPanelContent >
+      <a href="#" (click)="getLotti($event)">Carica Lotti</a>
+    </ng-template>
+  </ngb-panel>
+
+  <ngb-panel id="static-2">
+    <ng-template ngbPanelTitle>
+      <span> <b>Registro</b></span>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <a href="#" (click)="getRegister($event)">Carica Registro</a>
+    </ng-template>
+  </ngb-panel>
+  
+</ngb-accordion>

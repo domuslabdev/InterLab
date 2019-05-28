@@ -1,0 +1,47 @@
+<div class="modal-content sgatereqs">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{testo}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body"  >
+        <table id="tblBIArchive" class="table table-striped table-bordered ">
+            <thead id="thd">
+                <tr>
+                    <th>LotId</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>ProtDomanda</th>
+                    <th>ProtRichiesta</th>
+                    <th>IndNome</th>
+                    <th>ReqIstatComune</th>
+                    <th>ReqCognome</th>
+                    <th>ReqEnteAreaCir</th>
+                    <th>IndCf</th>
+                    <th>ReqCf</th>
+                    <th>IndAreaCirc</th>
+                    <th>EsitoS</th>
+                    <th>EsitoD</th>
+                </tr>
+            </thead>
+            <tbody id="tblBIArchiveBody">
+              <tr  *ngFor="let item of reqs"  confirm [req]="item"  app-lotti>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer"  >
+      <button type="button" class="btn btn-outline-dark" (click)="decline()">{{btnKOText}}</button>
+      <button type="button" class="btn btn-outline-dark" (click)="accept()">{{btnOkText}}</button>
+      <ng-content #name></ng-content>
+    </div>
+
+    <div class="row">
+    <div class="col-md-12">
+      <ng-content #name></ng-content>
+    </div>
+  </div>
+    
+  </div>
+  

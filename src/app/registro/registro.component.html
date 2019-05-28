@@ -1,0 +1,38 @@
+  <div class="pull-right">
+
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-success" id="btninfoLottoUpload" role="button"
+        title="Carica un nuovo file da sGATE"><span class="fa fa-upload"></span></button>
+      <button type="button" class="btn btn-success" id="btnValidateLot"
+        title="Esegui la validazione del lotto selezionato"><span class="fa fa-gavel"></span></button>
+      <button type="button" class="btn btn-success" id="btnDownloadEsito" role="button"
+        title="Scarica il file da trasmettere a sGATE"><span class="fa fa-download"></span></button>
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" role="button"
+        title="selezione stati del lotto"><span class="fa fa-filter"></span><span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-menu-right" id="lotstatusid"></ul>
+    </div>
+
+  </div>
+
+  <div class="panel-body">
+    <table id="tblBIArchive" class="table table-striped table-bordered ">
+      <thead id="thd">
+        <tr>
+          <th>Codice Rcihiesta</th>
+          <th>Anno di competenza2</th>
+          <th>Stato Richiesta</th>
+          <th>Autore</th>
+       
+        </tr>
+      </thead>
+      <tbody id="tblBIArchiveBody">
+        <tr *ngFor="let item of registro">
+          <td>{{item.id}}</td>
+          <td>{{item.Lotto}}</td>
+          <td>{{item.Esito}}</td>
+          <td>{{item.date}}</td>
+          <!-- <td>{{item.nascita| date : " MMMM d, y" }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
